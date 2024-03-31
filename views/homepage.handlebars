@@ -1,5 +1,5 @@
 {{#each posts as |post|}}
-  {{post.date_created}}
-  {{post.title}}
+  <p>Created by {{post.user.name}} on  {{format_date post.date_created}}</p>
+  <h1><a href="/post/{{post.id}}">{{post.title}}</a></h1>
   {{post.text}}
 {{/each}}
