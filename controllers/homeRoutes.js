@@ -62,27 +62,45 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [Post],
+    });
 
-// router.get('/comment/:id', withAuth, async (req, res) => {
-//   const postData = await Post.findByPk(req.params.id, 
-//     {include: [User,  
-//       {model:Comment, attributes:['text'], include:[User],
-//   }]});
+    const user = userData.get({ plain: true });
 
-//   const postDataPlain = postData.get({ plain: true });
+    res.render('dashboard', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-//   res.render('comment', {postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id});
-// })
-// router.get('/edit/:id', withAuth, async (req, res) => {
-//   const postData = await Post.findByPk(req.params.id, 
-//     {include: [User,  
-//       {model:Comment, attributes:['text'], include:[User],
-//   }]});
+router.get('/comment/:id', withAuth, async (req, res) => {
+  const postData = await Post.findByPk(req.params.id, 
+    {include: [User,  
+      {model:Comment, attributes:['text'], include:[User],
+  }]});
 
-//   const postDataPlain = postData.get({ plain: true });
+  const postDataPlain = postData.get({ plain: true });
 
-//   res.render('edit', {postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id});
-// })
+  res.render('comment', {postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id});
+})
+router.get('/edit/:id', withAuth, async (req, res) => {
+  const postData = await Post.findByPk(req.params.id, 
+    {include: [User,  
+      {model:Comment, attributes:['text'], include:[User],
+  }]});
+
+  const postDataPlain = postData.get({ plain: true });
+
+  res.render('edit', {postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id});
+})
 
 
 module.exports = router;
