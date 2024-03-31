@@ -1,2 +1,5 @@
-{{#each posts as |post| }}
-  <a href=""></a>
+{{#each posts as |post|}}
+  {{post.date_created}}
+  {{post.title}}
+  {{post.text}}
+{{/each}}
