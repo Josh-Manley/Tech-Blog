@@ -6,7 +6,7 @@
  
   <h3>Comments:</h3>
   {{#each postDataPlain.comments as |comment| }}
-   <p>{{comment.text}} by {{comment.user.name}}</p>
+   <p>{{comment.text}} by {{comment.user.name}} {{comment.id}}</p>
    <button class='btn-danger2' data-id='{{comment.id}}'>delete</button> 
    {{/each}}
   

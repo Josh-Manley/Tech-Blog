@@ -39,7 +39,7 @@ router.get('/post/:id', async (req, res) => {
           // attributes: ['name'],
           attributes: ['name', 'id'],
         },
-        { model: Comment, include: [User], attributes: ['text', 'date_created'] },
+        { model: Comment, include: [User], attributes: ['text', 'date_created', 'id'] },
       ],
     });
 
@@ -124,13 +124,14 @@ router.get('/newpost', withAuth, async (req, res) => {
 
 router.get('/comment/:id', withAuth, async (req, res) => {
   const postData = await Post.findByPk(req.params.id, {
-    include: [User, { model: Comment, attributes: ['text'], include: [User] }],
+    include: [User, { model: Comment, attributes: ['text', 'id'], include: [User] }],
   });
 
   const postDataPlain = postData.get({ plain: true });
 
   res.render('comment', { postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id });
 });
+
 router.get('/edit/:id', withAuth, async (req, res) => {
   const postData = await Post.findByPk(req.params.id, {
     include: [User],

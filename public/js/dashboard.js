@@ -36,7 +36,7 @@ const delCommentButtonHandler = async event => {
 
   const commentId = target.getAttribute('data-id');
 
-  console.log("Comment ID:", commentId); // Debugging: Check if commentId is retrieved correctly
+  console.log('Comment ID:', commentId); // Debugging: Check if commentId is retrieved correctly
 
   const response = await fetch(`/api/comments/${commentId}`, {
     method: 'DELETE',
@@ -45,6 +45,7 @@ const delCommentButtonHandler = async event => {
   if (response.ok) {
     // Remove the deleted comment from the DOM
     target.parentElement.remove();
+    document.location.replace(`/api/comments/${commentId}`);
   } else {
     alert('Failed to delete comment');
   }
@@ -52,4 +53,3 @@ const delCommentButtonHandler = async event => {
 
 document.addEventListener('click', delCommentButtonHandler);
 document.addEventListener('click', delButtonHandler);
-
