@@ -22,4 +22,34 @@ const delButtonHandler = async event => {
   }
 };
 
+const delCommentButtonHandler = async event => {
+  let target = event.target;
+
+  // Check if the clicked element has the class .btn-danger2
+  if (!target.classList.contains('btn-danger2')) {
+    // If not, find the closest parent element with the class .btn-danger2
+    target = event.target.closest('.btn-danger2');
+  }
+
+  // If no parent with the class .btn-danger2 is found, exit
+  if (!target) return;
+
+  const commentId = target.getAttribute('data-id');
+
+  console.log("Comment ID:", commentId); // Debugging: Check if commentId is retrieved correctly
+
+  const response = await fetch(`/api/comments/${commentId}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    // Remove the deleted comment from the DOM
+    target.parentElement.remove();
+  } else {
+    alert('Failed to delete comment');
+  }
+};
+
+document.addEventListener('click', delCommentButtonHandler);
 document.addEventListener('click', delButtonHandler);
+

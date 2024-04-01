@@ -5,9 +5,10 @@
 <h3>Comments</h3>
 {{#each comments as |comment|}}
   <p>{{comment.text}} by {{comment.user.name}} <br /> {{format_date comment.date_created}}</p>
-  <button>delete</button>
 {{/each}}
 
 <p>
   <a class='btn btn-primary comment-btn' href='/comment/{{id}}'>Comment</a>
 </p>
+
+
