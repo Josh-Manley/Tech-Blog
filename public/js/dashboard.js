@@ -50,6 +50,5 @@ const delCommentButtonHandler = async event => {
     alert('Failed to delete comment');
   }
 };
-
 document.addEventListener('click', delCommentButtonHandler);
 document.addEventListener('click', delButtonHandler);

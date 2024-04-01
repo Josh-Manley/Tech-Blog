@@ -1,7 +1,9 @@
 {{#each posts as |post|}}
-  <h1><a href='/post/{{post.id}}'>{{post.title}}</a></h1>
-  <p id="hp-text">Created by {{post.user.name}} on {{format_date post.date_created}}</p>
-  <div id="post-txt">
-    {{post.text}}
+  <div id="blog-content">
+    <h1><a href='/post/{{post.id}}'>{{post.title}}</a></h1>
+    <p id="hp-text">Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+    <div id="post-txt">
+      {{post.text}}
+    </div>
   </div>
 {{/each}}

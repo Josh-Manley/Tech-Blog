@@ -47,6 +47,12 @@ div {
   padding: 20px;
 }
 
+#blog-content {
+  border: #333 solid;
+  margin: 10;
+  border-radius: 5px;
+}
+
 #post-txt {
   font-size: 20px;
 }
@@ -84,7 +90,8 @@ p {
 }
 
 #hp-text {
-  border-top: #666 solid;
+  border-top: #333 solid;
+  color: #666;
 }
 
 /* Style for comments heading */
@@ -156,7 +163,7 @@ p.comment {
   text-decoration: none;
 }
 
-.btn-danger {
+.btn-danger, .btn-danger2 {
   background-color: #dc3545;
   color: #fff;
 }

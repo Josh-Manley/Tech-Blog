@@ -22,6 +22,20 @@ const sess = {
     db: sequelize,
   }),
 };
+app.use(session(sess));
+
+// Middleware to set currentUser
+app.use((req, res, next) => {
+  // Assuming your authentication middleware sets req.user after successful authentication
+  if (req.session.user) {
+    // Set currentUser in res.locals
+    res.locals.currentUser = req.session.user;
+  } else {
+    // If the user is not logged in, set currentUser to null or an empty object
+    res.locals.currentUser = null;
+  }
+  next();
+});
 
 // Define a function to set MIME types
 function setCustomHeaders(res, path) {
@@ -37,8 +51,6 @@ app.use(
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-
-app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
