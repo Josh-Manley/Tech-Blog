@@ -1,34 +1,25 @@
 const delButtonHandler = async event => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+  let target = event.target;
+  // Check if the clicked element has the class .btn-danger
+  if (!target.classList.contains('btn-danger')) {
+    // If not, find the closest parent element with the class .btn-danger
+    target = event.target.closest('.btn-danger');
+  }
 
-    const response = await fetch(`/api/posts/${id}`, {
-      method: 'DELETE',
-    });
+  // If no parent with the class .btn-danger is found, exit
+  if (!target) return;
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete post');
-    }
+  const id = target.getAttribute('data-id');
+
+  const response = await fetch(`/api/posts/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    document.location.replace('/dashboard');
+  } else {
+    alert('Failed to delete post');
   }
 };
 
-const updateButtonHandler = async event => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-
-    const response = await fetch(`/api/posts${id}`, {
-      method: 'PUT',
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to update post')
-    }
-  }
-};
-
-document.querySelector('.btn-danger').addEventListener('click', delButtonHandler);
-document.querySelector('.btn-update').addEventListener('click', updateButtonHandler);
+document.addEventListener('click', delButtonHandler);

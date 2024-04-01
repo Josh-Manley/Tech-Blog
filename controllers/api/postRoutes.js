@@ -16,14 +16,22 @@ router.post('/', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const updatePost = await Post.update(req, body, {
+    const updatePost = await Post.update(req.body, {
       where: {
         id: req.params.id,
+        user_id: req.session.user_id,
       },
     });
+
+    // Check if any rows were affected
+    if (updatePost[0] === 0) {
+      return res.status(404).json({ error: 'Post not found or no changes were made.' });
+    }
+
     res.status(200).json(updatePost);
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

@@ -3,7 +3,7 @@
     <a href='/post/{{post.id}}'><h2>{{post.title}}</h2></a>
     <p>{{post.text}}</p>
     <button class='btn btn-sm btn-danger' data-id='{{post.id}}'>DELETE</button>
-    <button class='btn btn-sm btn-update' data-id='{{post.id}}'>Update</button>
+    <a href="/edit/{{id}}"><button class='btn btn-sm btn-update' data-id='{{post.id}}'>Update</button></a>
   {{/each}}
 </div>
 
