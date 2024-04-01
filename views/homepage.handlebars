@@ -1,5 +1,7 @@
 {{#each posts as |post|}}
   <h1><a href='/post/{{post.id}}'>{{post.title}}</a></h1>
-  <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
-  {{post.text}}
+  <p id="hp-text">Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+  <div id="post-txt">
+    {{post.text}}
+  </div>
 {{/each}}

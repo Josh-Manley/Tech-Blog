@@ -5,8 +5,11 @@
 <h3>Comments</h3>
 {{#each comments as |comment|}}
   <p>{{comment.text}} by {{comment.user.name}} {{comment.id}} <br /> {{format_date comment.date_created}}</p>
+  <button class='btn-danger2' data-id='{{comment.id}}'>delete</button> 
 {{/each}}
 
 <p>
   <a class='btn btn-primary comment-btn' href='/comment/{{id}}'>Comment</a>
 </p>
+
+<script src='../js/dashboard.js'></script>

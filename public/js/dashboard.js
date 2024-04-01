@@ -45,7 +45,7 @@ const delCommentButtonHandler = async event => {
   if (response.ok) {
     // Remove the deleted comment from the DOM
     target.parentElement.remove();
-    document.location.replace(`/api/comments/${commentId}`);
+    document.location.reload();
   } else {
     alert('Failed to delete comment');
   }

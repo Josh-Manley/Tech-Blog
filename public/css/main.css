@@ -5,7 +5,7 @@ nav,
 div {
   margin: 0;
   padding: 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 /* Basic styles for navigation */
@@ -47,6 +47,10 @@ div {
   padding: 20px;
 }
 
+#post-txt {
+  font-size: 20px;
+}
+
 /* Media query for responsiveness */
 @media screen and (max-width: 600px) {
   nav {
@@ -77,6 +81,10 @@ p {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
+}
+
+#hp-text {
+  border-top: #666 solid;
 }
 
 /* Style for comments heading */
