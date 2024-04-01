@@ -10,6 +10,11 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
+        {
+          model: Comment,
+          include: [Post],
+          attributes: ['text'],
+        },
       ],
     });
 
@@ -34,7 +39,7 @@ router.get('/post/:id', async (req, res) => {
           // attributes: ['name'],
           attributes: ['name', 'id'],
         },
-        { model: Comment, include: [User], attributes: ['text'] },
+        { model: Comment, include: [User], attributes: ['text', 'date_created'] },
       ],
     });
 
@@ -74,7 +79,25 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     res.render('dashboard', {
       ...user,
-      logged_in: true
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/newpost', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render('newpost', {
+      ...user,
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -82,25 +105,22 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/comment/:id', withAuth, async (req, res) => {
-  const postData = await Post.findByPk(req.params.id, 
-    {include: [User,  
-      {model:Comment, attributes:['text'], include:[User],
-  }]});
+  const postData = await Post.findByPk(req.params.id, {
+    include: [User, { model: Comment, attributes: ['text'], include: [User] }],
+  });
 
   const postDataPlain = postData.get({ plain: true });
 
-  res.render('comment', {postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id});
-})
+  res.render('comment', { postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id });
+});
 router.get('/edit/:id', withAuth, async (req, res) => {
-  const postData = await Post.findByPk(req.params.id, 
-    {include: [User,  
-      {model:Comment, attributes:['text'], include:[User],
-  }]});
+  const postData = await Post.findByPk(req.params.id, {
+    include: [User, { model: Comment, attributes: ['text'], include: [User] }],
+  });
 
   const postDataPlain = postData.get({ plain: true });
 
-  res.render('edit', {postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id});
-})
-
+  res.render('edit', { postDataPlain, logged_in: req.session.logged_in, userId: req.session.user_id });
+});
 
 module.exports = router;
