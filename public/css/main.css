@@ -1,0 +1,191 @@
+/* Resetting default margin and padding */
+html,
+body,
+nav,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Basic styles for navigation */
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Style the logout button */
+#logout {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Style the header */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Style the main content area */
+div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin: 5px 0;
+  }
+}
+/* Style for article title */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for author and date */
+h4 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Style for article text */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Style for comments heading */
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Style for individual comments */
+p.comment {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Style for comment button */
+.btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+/* Style for comment button on small screens */
+@media screen and (max-width: 600px) {
+  .btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+/* Style for post list container */
+.post-list {
+  margin-top: 20px;
+}
+
+/* Style for individual post */
+.post {
+  margin-bottom: 20px;
+}
+
+/* Style for post title */
+.post h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Style for post content */
+.post p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* Style for delete and update buttons */
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-update {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Style for create new post button */
+#create-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Style for small buttons */
+.btn-sm {
+  padding: 3px 6px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove color change from visited links */
+a:visited {
+  color: inherit;
+}
+
+/* Remove outline from focused links */
+a:focus {
+  outline: none;
+}
