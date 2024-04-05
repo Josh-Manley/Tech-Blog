@@ -4,8 +4,10 @@
 
 <h3>Comments</h3>
 {{#each comments as |comment|}}
-  <p>{{comment.text}} by {{comment.user.name}} {{comment.id}} <br /> {{format_date comment.date_created}}</p>
-    <button class='btn btn-sm btn-danger2' data-id='{{comment.id}}'>delete</button>
+  <p>{{comment.text}} by {{comment.user.name}} <br /> {{format_date comment.date_created}}</p>
+
+    <button class='btn btn-sm btn-danger2 delete-comment' data-id='{{comment.id}}'>Delete</button>
+
 {{/each}}
 
 <p>

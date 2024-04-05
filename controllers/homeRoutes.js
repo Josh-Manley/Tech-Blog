@@ -41,12 +41,12 @@ router.get('/post/:id', withAuth, async (req, res) => {
         { model: Comment, include: [User], attributes: ['text', 'date_created', 'id'] },
       ],
     });
-
     const post = postData.get({ plain: true });
+    // console.log(postData);
     const userId = req.session.user_id;
-    const postUserId = post.user_id;
+    const postUserId = postData.user_id;
     const sameUser = userId === postUserId;
-
+    console.log(sameUser);
     res.render('post', {
       ...post,
       logged_in: req.session.logged_in,
